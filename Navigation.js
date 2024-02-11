@@ -2,15 +2,16 @@ import React from 'react';
 import { NavigationContainer } from '@react-navigation/native';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 
+
 import CalendarScreen from './screens/CalendarScreen.js';
 import FeedScreen from './screens/FeedScreen.js';
 import MapScreen from './screens/MapScreen.js';
 import MessangerScreen from './screens/MessangerScreen.js';
 import ProfileScreen from './screens/ProfileScreen.js';
-import { StatusBar } from 'expo-status-bar'
+import { StatusBar } from 'expo-status-bar';
+
 
 const Tab = createBottomTabNavigator();
-// const Stack = createStackNavigator();
 
 // const AuthStack = () => {
 //     return (
@@ -20,7 +21,9 @@ const Tab = createBottomTabNavigator();
 //     );
 // };
 
-const Navigaton = () => {
+
+
+const NavigatonInside = () => {
     return (
         <NavigationContainer>
             <Tab.Navigator>
@@ -34,6 +37,7 @@ const Navigaton = () => {
         </NavigationContainer>
     );
 };
+
 
 // const Navigation = ({ isAuthenticated, setAuthenticated }) => {
 //     React.useEffect(() => {
@@ -58,4 +62,4 @@ const Navigaton = () => {
 
 // export default connect(mapStateToProps, mapDispatchToProps)(Navigation);
 
-export default Navigaton;
+export default NavigatonInside;
