@@ -1,16 +1,13 @@
 import React from 'react';
-import { connect } from 'react-redux';
 import { NavigationContainer } from '@react-navigation/native';
-import { createStackNavigator } from '@react-navigation/stack';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 
-import AuthScreen from './screens/AuthScreen.js';
 import CalendarScreen from './screens/CalendarScreen.js';
 import FeedScreen from './screens/FeedScreen.js';
 import MapScreen from './screens/MapScreen.js';
 import MessangerScreen from './screens/MessangerScreen.js';
 import ProfileScreen from './screens/ProfileScreen.js';
-import { setAuthenticated } from './redux/actions';
+import { StatusBar } from 'expo-status-bar'
 
 const Tab = createBottomTabNavigator();
 // const Stack = createStackNavigator();
@@ -33,6 +30,7 @@ const Navigaton = () => {
                 <Tab.Screen name="Чаты" component={MessangerScreen} />
                 <Tab.Screen name="Профиль" component={ProfileScreen} />
             </Tab.Navigator>
+			<StatusBar theme="auto"></StatusBar>
         </NavigationContainer>
     );
 };
