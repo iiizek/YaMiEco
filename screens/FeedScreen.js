@@ -13,10 +13,10 @@ const FeedScreen = () => {
 
     return (
         <Container>
-            <Image 
-				source={require('../assets/stubs/feed.jpg')}
-				style={{ marginTop: 65, width: '100%', height: '100%' }}
-			/>
+            <Image
+                source={require('../assets/stubs/feed.jpg')}
+                style={{ marginTop: 65, width: '100%', height: '100%' }}
+            />
             <View
                 style={{
                     display: 'flex',
@@ -26,6 +26,8 @@ const FeedScreen = () => {
                     top: -5,
                     zIndex: 101,
                     padding: 15,
+                    justifyContent: 'center',
+                    alignItems: 'center',
                 }}>
                 <TextInput
                     placeholder="Поиск по постам"

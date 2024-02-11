@@ -32,7 +32,7 @@ const CalendarScreen = () => {
                   style={{
                       padding: 10,
                       backgroundColor: 'white',
-                      borderRadius: 10,
+                      borderRadius: 10
                   }}
                   onPress={() => setOpenFilter(!openFilter)}>
                   <Text style={{ fontWeight: 600 }}>ФИЛЬТРЫ</Text>

@@ -1,5 +1,5 @@
 import React from 'react';
-import { TouchableOpacity, Text, View, TextInput, Button } from 'react-native';
+import { TouchableOpacity, Text, View, TextInput, Button, Platform } from 'react-native';
 import MapView, { Marker } from 'react-native-maps';
 import styled from 'styled-components/native';
 import { useIsFocused } from '@react-navigation/native';
@@ -85,7 +85,7 @@ const MapScreen = () => {
             },
         });
         setModalVisible(false);
-        setKeyboardOpen(false);
+        handleOpenKeyboard(false);
     };
 
     const handleMapPress = (e) => {
@@ -96,6 +96,12 @@ const MapScreen = () => {
 
         setNewMarker({ ...newMarker, coords: newMarkerCoordinate });
     };
+
+	handleOpenKeyboard = (bool) => {
+		if (Platform.OS === 'ios') {
+			setKeyboardOpen(bool);
+		}
+	}
 
     return (
         <Container>
@@ -108,6 +114,8 @@ const MapScreen = () => {
                     top: -5,
                     zIndex: 101,
                     padding: 15,
+                    justifyContent: 'center',
+                    alignItems: 'center',
                 }}>
                 <TextInput
                     placeholder="Поиск по карте"
@@ -126,8 +134,7 @@ const MapScreen = () => {
                         backgroundColor: 'white',
                         borderRadius: 10,
                     }}
-					onPress={() => setOpenFilter(!openFilter)}
-					>
+                    onPress={() => setOpenFilter(!openFilter)}>
                     <Text style={{ fontWeight: 600 }}>ФИЛЬТРЫ</Text>
                 </TouchableOpacity>
             </View>
@@ -259,7 +266,7 @@ const MapScreen = () => {
                     bottom: keyboardOpen ? 250 : 10,
                     left: 15,
                     width: '75%',
-					zIndex: 200
+                    zIndex: 200,
                 }}>
                 {modalVisible && (
                     <View
@@ -282,8 +289,8 @@ const MapScreen = () => {
                             onChangeText={(text) => setNewMarker({ ...newMarker, title: text })}
                             value={newMarker.title}
                             placeholder="Название метки"
-                            onFocus={() => setKeyboardOpen(true)}
-                            onBlur={() => setKeyboardOpen(false)}
+                            onFocus={() => handleOpenKeyboard(true)}
+                            onBlur={() => handleOpenKeyboard(false)}
                         />
                         <TextInput
                             style={{
