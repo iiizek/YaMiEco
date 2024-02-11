@@ -3,6 +3,8 @@ import { View, TouchableOpacity, Text, Image } from 'react-native';
 import styled from'styled-components/native';
 import { RadioButton } from 'react-native-paper';
 
+import * as filtersJSON from '../json/filters.json';
+
 const Container = styled.View`
     flex: 1;
 	position: relative;
@@ -32,7 +34,7 @@ const CalendarScreen = () => {
                   style={{
                       padding: 10,
                       backgroundColor: 'white',
-                      borderRadius: 10
+                      borderRadius: 10,
                   }}
                   onPress={() => setOpenFilter(!openFilter)}>
                   <Text style={{ fontWeight: 600 }}>ФИЛЬТРЫ</Text>
@@ -53,50 +55,22 @@ const CalendarScreen = () => {
                   flexDirection: 'column',
                   gap: 20,
               }}>
-              <View
-                  style={{
-                      backgroundColor: 'lightgray',
-                      padding: 8,
-                      borderRadius: 8,
-                      flexDirection: 'row',
-                      alignItems: 'center',
-                  }}>
-                  <RadioButton status="checked" disabled={true} />
-                  <Text style={{ fontSize: 16 }}>Родники</Text>
-              </View>
-              <View
-                  style={{
-                      backgroundColor: 'lightgray',
-                      padding: 8,
-                      borderRadius: 8,
-                      flexDirection: 'row',
-                      alignItems: 'center',
-                  }}>
-                  <RadioButton status="checked" disabled={true} />
-                  <Text style={{ fontSize: 16 }}>Мусор</Text>
-              </View>
-              <View
-                  style={{
-                      backgroundColor: 'lightgray',
-                      padding: 8,
-                      borderRadius: 8,
-                      flexDirection: 'row',
-                      alignItems: 'center',
-                  }}>
-                  <RadioButton status="checked" disabled={true} />
-                  <Text style={{ fontSize: 16 }}>Загрязнения</Text>
-              </View>
-              <View
-                  style={{
-                      backgroundColor: 'lightgray',
-                      padding: 8,
-                      borderRadius: 8,
-                      flexDirection: 'row',
-                      alignItems: 'center',
-                  }}>
-                  <RadioButton status="checked" disabled={true} />
-                  <Text style={{ fontSize: 16 }}>Субботники</Text>
-              </View>
+              {filtersJSON.calendarFilters.map((filters) => {
+                  return (
+                      <View
+                          style={{
+                              backgroundColor: 'lightgray',
+                              padding: 8,
+                              borderRadius: 8,
+                              flexDirection: 'row',
+                              alignItems: 'center',
+                          }}
+                          key={filters.id}>
+                          <RadioButton status="checked" disabled={true} />
+                          <Text style={{ fontSize: 16 }}>{filters.name}</Text>
+                      </View>
+                  );
+              })}
           </View>
       </Container>
   );

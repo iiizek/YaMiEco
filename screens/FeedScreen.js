@@ -3,10 +3,14 @@ import { View, TextInput, TouchableOpacity, Text, Image } from 'react-native';
 import styled from 'styled-components/native';
 import { RadioButton } from 'react-native-paper';
 
+import * as filtersJSON from '../json/filters.json';
+
 const Container = styled.View`
     flex: 1;
     position: relative;
 `;
+
+
 
 const FeedScreen = () => {
     const [openFilter, setOpenFilter] = React.useState(false);
@@ -65,50 +69,22 @@ const FeedScreen = () => {
                     flexDirection: 'column',
                     gap: 20,
                 }}>
-                <View
-                    style={{
-                        backgroundColor: 'lightgray',
-                        padding: 8,
-                        borderRadius: 8,
-                        flexDirection: 'row',
-                        alignItems: 'center',
-                    }}>
-                    <RadioButton status="checked" disabled={true} />
-                    <Text style={{ fontSize: 16 }}>Родники</Text>
-                </View>
-                <View
-                    style={{
-                        backgroundColor: 'lightgray',
-                        padding: 8,
-                        borderRadius: 8,
-                        flexDirection: 'row',
-                        alignItems: 'center',
-                    }}>
-                    <RadioButton status="checked" disabled={true} />
-                    <Text style={{ fontSize: 16 }}>Мусор</Text>
-                </View>
-                <View
-                    style={{
-                        backgroundColor: 'lightgray',
-                        padding: 8,
-                        borderRadius: 8,
-                        flexDirection: 'row',
-                        alignItems: 'center',
-                    }}>
-                    <RadioButton status="checked" disabled={true} />
-                    <Text style={{ fontSize: 16 }}>Загрязнения</Text>
-                </View>
-                <View
-                    style={{
-                        backgroundColor: 'lightgray',
-                        padding: 8,
-                        borderRadius: 8,
-                        flexDirection: 'row',
-                        alignItems: 'center',
-                    }}>
-                    <RadioButton status="checked" disabled={true} />
-                    <Text style={{ fontSize: 16 }}>Субботники</Text>
-                </View>
+                {filtersJSON.feedFilters.map((filters) => {
+                    return (
+                        <View
+                            style={{
+                                backgroundColor: 'lightgray',
+                                padding: 8,
+                                borderRadius: 8,
+                                flexDirection: 'row',
+                                alignItems: 'center',
+                            }}
+                            key={filters.id}>
+                            <RadioButton status="checked" disabled={true} />
+                            <Text style={{ fontSize: 16 }}>{filters.name}</Text>
+                        </View>
+                    );
+                })}
             </View>
         </Container>
     );
